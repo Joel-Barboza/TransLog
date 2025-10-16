@@ -1,0 +1,2 @@
+% prueba
+verbo(comer)
