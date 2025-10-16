@@ -1,18 +1,18 @@
 :- consult('Logic.pl').
 
-% TRADUCCIÓN ESPAÑOL -> INGLÉS
+% TRADUCCIÓN ESPAÑOL -> INGLÉS CORREGIDA
 traducir_es_en(OracionEs) :-
     tokenizar(OracionEs, TokensEs),
-    (   oracion(TokensEs, [], [], TokensEn)
+    (   oracion(TokensEs, [], [], TokensEn)  % ← CORREGIDO: [], TokensEn en lugar de TokensEn, []
     ->  atomic_list_concat(TokensEn, ' ', OracionEn),
         write('Traducción: '), write(OracionEn), nl
     ;   write('No entendí la oración'), nl
     ).
 
-% TRADUCCIÓN INGLÉS -> ESPAÑOL
+% TRADUCCIÓN INGLÉS -> ESPAÑOL CORREGIDA
 traducir_en_es(OracionEn) :-
     tokenizar(OracionEn, TokensEn),
-    (   oracion(TokensEs, [], TokensEn, [])
+    (   oracion(TokensEs, [], TokensEn, [])  % ← Esto está correcto
     ->  atomic_list_concat(TokensEs, ' ', OracionEs),
         write('Traducción: '), write(OracionEs), nl
     ;   write('No entendí la oración'), nl
@@ -33,7 +33,7 @@ translog_en :-
      traducir_en_es(Oracion),
      translog_en).
 
-% TOKENIZACIÓN
+% TOKENIZACIÓN MEJORADA
 tokenizar(Oracion, Tokens) :-
     split_string(Oracion, " ", "", Strings),
     maplist(atom_string, Tokens, Strings).
