@@ -1,62 +1,44 @@
 :- consult('DB.pl').
 
-% PREDICADO PRINCIPAL
-oracion(S0, S, T0, T) :-
-    sintagma_nominal(NUM, _, PERS, S0, S1, T0, T1),
-    sintagma_verbal(NUM, PERS, S1, S, T1, T).
+oracion(S0,S, T0,T):-
+    sintagma_nominal(S0, T0,Per, Num, S1, T1),
+    sintagma_verbal(S1, T1, Per, Num, S,T).
 
-oracion(S0, S, T0, T) :-
-    pronombre(NUM, _, PERS, S0, S1, T0, T1),
-    sintagma_verbal(NUM, PERS, S1, S, T1, T).
-
-% SINTAGMA NOMINAL - Maneja orden de adjetivos
-sintagma_nominal(NUM, GEN, PERS, S0, S, T0, T) :-
-    determinante(NUM, GEN, PERS, S0, S1, T0, T1),
-    sustantivo(NUM, GEN, S1, S, T1, T).
-
-/*sintagma_nominal(NUM, GEN, PERS, S0, S, T0, T) :-
-    determinante(NUM, GEN, PERS, S0, S1, T0, T1),
-    sustantivo(NUM, GEN, S1, S2, T1, T2),
-    adjetivo(NUM, GEN, S2, S, T2, T), !.*/
-
-% SINTAGMA NOMINAL sin determinante (para pronombres y sustantivos solos)
-sintagma_nominal(NUM, GEN, _, S0, S, T0, T) :-
-    sustantivo(NUM, GEN, S0, S, T0, T).
-
-sintagma_nominal(NUM, GEN, PERS, S0, S, T0, T) :-
-    pronombre(NUM, GEN, PERS, S0, S, T0, T).
-
-% SINTAGMA VERBAL
-sintagma_verbal(NUM, PERS, S0, S, T0, T) :-
-    verbo(NUM, PERS, S0, S, T0, T).
-
-sintagma_verbal(NUM, PERS, S0, S, T0, T) :-
-    verbo(NUM, PERS, S0, S1, T0, T1),
-    sintagma_nominal(_, _, _, S1, S, T1, T).
-
-% REGLAS DE CONCORDANCIA
-determinante(NUM, GEN, _, [Palabra|S], S, [Traduccion|T], T) :-
-    determinante(Palabra, Traduccion, GEN, NUM).
-
-sustantivo(NUM, GEN, [Palabra|S], S, [Traduccion|T], T) :-
-    sustantivo(Palabra, Traduccion, GEN, NUM).
-
-verbo(NUM, PERS, [Palabra|S], S, [Traduccion|T], T) :-
-    verbo(Palabra, Traduccion, PERS, NUM).
+traducir_es_ing(Oracion_es, Oracion_in) :-
+    oracion(Oracion_es, _, Oracion_in, _).
 
 
-%adjetivo(singular,_,[grande],_,Traduccion,[]).
-%Traduccion = [big] ; masculino
-%Traduccion = [big]. femenino
-adjetivo(NUM, GEN, [Palabra|S], S, [Traduccion|T], T) :-
-    adjetivo(Palabra, Traduccion, GEN, NUM).
+sintagma_nominal([Det_es, Sus_es, Adj_es | Res_es],
+                 [Det_in, Adj_in, Sus_in | Res_in],
+                 3, Num, Res_es,Res_in):-
+    determinante(Det_es, Det_in, Gen, Num),
+    sustantivo(Sus_es, Sus_in, Gen, Num),
+    adjetivo(Adj_es, Adj_in, Gen, Num),
+    !.
 
 
-%?- pronombre(_, _, 1, _, _, Traduccion, []).
-%Traduccion = [i] ;
-%Traduccion = [we] ;
-%Traduccion = [we] ;
-%Traduccion = [myself] ;
-%Traduccion = [ourselves].
-pronombre(NUM, GEN, PERS, [Palabra|S], S, [Traduccion|T], T) :-
-    pronombre(Palabra, Traduccion, PERS, NUM).
+% Determinante + Sustantivo
+sintagma_nominal([Det_es, Sus_es | Res_es],
+                 [Det_in, Sus_in | Res_in],
+                 3, Num, Res_es,Res_in):-
+    determinante(Det_es, Det_in, Gen, Num),
+    sustantivo(Sus_es, Sus_in, Gen, Num),
+    !.
+
+
+sintagma_nominal([Pron_es|Res_es],[Pron_in|Res_in],Per,Num,Res_es, Res_in):-
+    pronombre(Pron_es,Pron_in,Per,Num).
+
+
+sintagma_verbal([Verb_es| Res_es],
+                [Verb_in | Res_in],
+                Per, Num, Res_es, Res_in):-
+    verbo(Verb_es, Verb_in, Per, Num),
+    sintagma_nominal(Res_es, Res_in,_, Num, _, _),
+    !.
+
+sintagma_verbal([Verb_es| Res_es],
+                [Verb_in | Res_in],
+                Per, Num, Res_es, Res_in):-
+    verbo(Verb_es, Verb_in, Per, Num).
+

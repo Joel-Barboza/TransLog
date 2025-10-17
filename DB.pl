@@ -496,3 +496,9 @@ interjeccion(okay, okay).
 interjeccion(¡eh!, hey).
 interjeccion(¡vaya!, wow).
 interjeccion(¡cuidado!, careful).*/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Numeros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/*unidades(uno, one).
+unidades(dos, two).*/

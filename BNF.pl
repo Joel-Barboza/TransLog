@@ -2,46 +2,47 @@
 
 % TRADUCCIÓN ESPAÑOL -> INGLÉS
 traducir_es_en(OracionEs) :-
-    tokenizar(OracionEs, TokensEs),
-    (   oracion(TokensEs, [], [], TokensEn)
-    ->  atomic_list_concat(TokensEn, ' ', OracionEn),
-        write('Traducción: '), write(OracionEn), nl
-    ;   write('No entendí la oración'), nl
+    separar(OracionEs, PalabrasEs),
+    (   oracion(PalabrasEs, _, PalabrasEn, _)
+    ->  lista_a_string(PalabrasEn, Traduccion),
+        write('Traducción: '), write(Traduccion), nl,!
+    ;   write('No entendí la oración.'), nl
     ).
+
 
 % TRADUCCIÓN INGLÉS -> ESPAÑOL
 traducir_en_es(OracionEn) :-
-    tokenizar(OracionEn, TokensEn),
-    (   oracion(TokensEs, [], TokensEn, [])
-    ->  atomic_list_concat(TokensEs, ' ', OracionEs),
-        write('Traducción: '), write(OracionEs), nl
-    ;   write('No entendí la oración'), nl
+    separar(OracionEn, PalabrasEn),
+    (   oracion(PalabrasEs, _, PalabrasEn, _)
+    ->  lista_a_string(PalabrasEs, Traduccion),
+        write('Traducción: '), write(Traduccion), nl,!
+    ;   write('No entendí la oración.'), nl
     ).
 
-% MODO INTERACTIVO
-translog_es :-
-    write('TransLogES> '),
+
+% Español-ingles
+transLogEI :-
+    write('TransLogEI> '), nl,
     read_line_to_string(user_input, Oracion),
     (Oracion == 'salir' -> true;
      traducir_es_en(Oracion),
-     translog_es).
+     transLogEI).
 
-translog_en :-
-    write('TransLogEN> '),
+%ingles-español
+transLogIE :-
+    write('TransLogIE> '), nl,
     read_line_to_string(user_input, Oracion),
     (Oracion == 'quit' -> true;
      traducir_en_es(Oracion),
-     translog_en).
+     transLogIE).
 
-% TOKENIZACIÓN
-tokenizar(Oracion, Tokens) :-
+% la traduccion se devuelve como una lista de palabras
+lista_a_string(Lista, String) :-
+    maplist(atom_string, Lista, Strings),
+    atomic_list_concat(Strings, ' ', String).
+
+
+% separacion de palabras
+separar(Oracion, Palabras) :-
     split_string(Oracion, " ", "", Strings),
-    maplist(atom_string, Tokens, Strings).
-
-% INICIALIZACIÓN
-iniciar :-
-    write('=== TransLog - Sistema de Traducción ==='), nl,
-    write('Modos disponibles:'), nl,
-    write('1. translog_es - Traducir español -> inglés'), nl,
-    write('2. translog_en - Traducir inglés -> español'), nl,
-    write('Escribe "salir" o "quit" para terminar.'), nl, nl.
+    maplist(atom_string, Palabras, Strings).
