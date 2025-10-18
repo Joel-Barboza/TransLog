@@ -55,3 +55,20 @@ sintagma_verbal([Verb_es| Res_es],
                 [Verb_in | Res_in],
                 Per, Num, Res_es, Res_in):-
     verbo(Verb_es, Verb_in, Per, Num).       % Traduce verbo solamente
+% SINTAGMA NOMINAL CON NÚMERO COMO DETERMINANTE
+% sintagma_nominal/6: Analiza Numero + Sustantivo
+sintagma_nominal([Num_es, Sus_es | Res_es],
+                 [Num_in, Sus_in | Res_in],
+                 3, Num, Res_es, Res_in):-
+    numero(Num_es, Num_in, Gen, _),          % Traduce número
+    sustantivo(Sus_es, Sus_in, Gen, Num),    % Traduce sustantivo
+    !.
+
+% SINTAGMA NOMINAL CON DETERMINANTE NUMÉRICO
+% sintagma_nominal/6: Analiza Numero como determinante
+sintagma_nominal([Num_es, Sus_es | Res_es],
+                 [Num_in, Sus_in | Res_in],
+                 3, Num, Res_es, Res_in):-
+    determinante(Num_es, Num_in, Gen, Num),  % Usa número como determinante
+    sustantivo(Sus_es, Sus_in, Gen, Num),    % Traduce sustantivo
+    !.

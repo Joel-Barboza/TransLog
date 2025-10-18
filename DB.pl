@@ -502,3 +502,38 @@ interjeccion(Â¡cuidado!, careful).*/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 /*unidades(uno, one).
 unidades(dos, two).*/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NÚMEROS: numero(Español, Inglés, Género, Número)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Números cardinales del 0 al 15
+numero(cero, zero, _, singular).
+numero(uno, one, masculino, singular).
+numero(una, one, femenino, singular).
+numero(dos, two, _, _).
+numero(tres, three, _, _).
+numero(cuatro, four, _, _).
+numero(cinco, five, _, _).
+numero(seis, six, _, _).
+numero(siete, seven, _, _).
+numero(ocho, eight, _, _).
+numero(nueve, nine, _, _).
+numero(diez, ten, _, _).
+numero(once, eleven, _, _).
+numero(doce, twelve, _, _).
+numero(trece, thirteen, _, _).
+numero(catorce, fourteen, _, _).
+numero(quince, fifteen, _, _).
+
+% Números como determinantes (para contar objetos)
+determinante(uno, one, masculino, singular).
+determinante(una, one, femenino, singular).
+determinante(dos, two, _, _).
+determinante(tres, three, _, _).
+determinante(cuatro, four, _, _).
+determinante(cinco, five, _, _).
+determinante(seis, six, _, _).
+determinante(siete, seven, _, _).
+determinante(ocho, eight, _, _).
+determinante(nueve, nine, _, _).
+determinante(diez, ten, _, _).

@@ -55,3 +55,41 @@ lista_a_string(Lista, String) :-
 separar(Oracion, Palabras) :-
     split_string(Oracion, " ", "", Strings),  % Divide el string por espacios
     maplist(atom_string, Palabras, Strings). % Convierte strings a Ã¡tomos
+% PREDICADO PARA MOSTRAR NÚMEROS DISPONIBLES
+% mostrar_numeros/0: Muestra todos los números del 0 al 15 en ambos idiomas
+mostrar_numeros :-
+    writeln('=== NÚMEROS DEL 0 AL 15 ==='),
+    writeln('Español    -> Inglés'),
+    forall(numero(Es, En, _, _),
+           format('~w       -> ~w~n', [Es, En])).
+
+% PREDICADO PARA TRADUCIR SOLO NÚMEROS
+% traducir_numero/2: Traduce un número entre español e inglés
+traducir_numero(Numero, Traduccion) :-
+    (   numero(Numero, Traduccion, _, _)
+    ;   numero(Traduccion, Numero, _, _)
+    ).
+
+% EJEMPLOS DE USO CON NÚMEROS
+% probar_numeros/0: Prueba traducciones con números
+probar_numeros :-
+    writeln('=== PRUEBAS CON NÚMEROS ==='),
+    ejemplos_numeros(Ejemplos),
+    forall(member(Espanol-Ingles, Ejemplos), (
+        format('Español: ~w~n', [Espanol]),
+        ( traducir_es_en(Espanol) ->
+            format('Esperado: ~w~n', [Ingles])
+        ;
+            writeln('No se pudo traducir')
+        ),
+        nl
+    )).
+
+ejemplos_numeros([
+    'tres manzanas',
+    'cinco libros',
+    'una casa',
+    'dos mujeres',
+    'diez estudiantes',
+    'quince pájaros'
+]).
