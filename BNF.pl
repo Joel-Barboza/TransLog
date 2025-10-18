@@ -93,3 +93,32 @@ ejemplos_numeros([
     'diez estudiantes',
     'quince pájaros'
 ]).
+% PREDICADO PARA MOSTRAR NÚMEROS DISPONIBLES
+% mostrar_numeros/0: Muestra todos los números del 0 al 99 en ambos idiomas
+mostrar_numeros :-
+    writeln('=== NÚMEROS DEL 0 AL 99 ==='),
+    writeln('Español    -> Inglés'),
+    forall(numero(Es, En, _, _),
+           format('~w       -> ~w~n', [Es, En])).
+% EJEMPLOS DE USO CON NÚMEROS EXTENDIDOS
+probar_numeros_extendidos :-
+    writeln('=== PRUEBAS CON NÚMEROS EXTENDIDOS ==='),
+    ejemplos_numeros_extendidos(Ejemplos),
+    forall(member(Espanol-Ingles, Ejemplos), (
+        format('Español: ~w~n', [Espanol]),
+        ( traducir_es_en(Espanol) ->
+            format('Esperado: ~w~n', [Ingles])
+        ;
+            writeln('No se pudo traducir')
+        ),
+        nl
+    )).
+
+ejemplos_numeros_extendidos([
+    'dieciséis manzanas',
+    'veintiún libros',
+    'veintiuna casas',
+    'treinta y cinco estudiantes',
+    'cincuenta y ocho pájaros',
+    'setenta y dos mujeres'
+]).

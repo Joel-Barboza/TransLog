@@ -506,7 +506,7 @@ unidades(dos, two).*/
 %% NÚMEROS: numero(Español, Inglés, Género, Número)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Números cardinales del 0 al 15
+% Números cardinales del 0 al 15 (ya existentes)
 numero(cero, zero, _, singular).
 numero(uno, one, masculino, singular).
 numero(una, one, femenino, singular).
@@ -525,7 +525,84 @@ numero(trece, thirteen, _, _).
 numero(catorce, fourteen, _, _).
 numero(quince, fifteen, _, _).
 
-% Números como determinantes (para contar objetos)
+% Números del 16 al 19: dieci + número base
+numero(dieciséis, sixteen, _, _).
+numero(diecisiete, seventeen, _, _).
+numero(dieciocho, eighteen, _, _).
+numero(diecinueve, nineteen, _, _).
+
+% DECENAS BASE
+numero(veinte, twenty, _, _).
+numero(veinti, twenty, _, _).  % Para composición
+numero(treinta, thirty, _, _).
+numero(cuarenta, forty, _, _).
+numero(cincuenta, fifty, _, _).
+numero(sesenta, sixty, _, _).
+numero(setenta, seventy, _, _).
+numero(ochenta, eighty, _, _).
+numero(noventa, ninety, _, _).
+
+% REGLA PARA NÚMEROS DEL 21-29 (veinti + unidad)
+numero(NumEs, NumEn, Gen, Num) :-
+    between(1, 9, Unidad),
+    unidad_numero(Unidad, UnidadEs, UnidadEn, _),
+    atom_concat('veinti', UnidadEs, NumEs),
+    (Unidad = 1 ->
+        (Gen = masculino, atom_concat('twenty_one', '', NumEn);
+         Gen = femenino, atom_concat('twenty_one', '', NumEn))
+    ;
+        atom_concat('twenty_', UnidadEn, NumEn)
+    ).
+
+% REGLA PARA NÚMEROS DEL 31-99 (decena + "y" + unidad)
+numero(NumEs, NumEn, Gen, Num) :-
+    between(3, 9, DecenaIdx),
+    decena_numero(DecenaIdx, DecenaEs, DecenaEn),
+    between(1, 9, Unidad),
+    unidad_numero(Unidad, UnidadEs, UnidadEn, UnidadGen),
+    atom_concat(DecenaEs, '_y_', TempEs),
+    atom_concat(TempEs, UnidadEs, NumEs),
+    (Unidad = 1 ->
+        (Gen = masculino, atom_concat(DecenaEn, '_one', NumEn);
+         Gen = femenino, atom_concat(DecenaEn, '_one', NumEn))
+    ;
+        atom_concat(DecenaEn, '_', TempEn),
+        atom_concat(TempEn, UnidadEn, NumEn)
+    ).
+
+% REGLA PARA DECENAS EXACTAS (20, 30, 40, etc.)
+numero(DecenaEs, DecenaEn, _, _) :-
+    between(2, 9, DecenaIdx),
+    decena_numero(DecenaIdx, DecenaEs, DecenaEn).
+
+% Tabla de decenas
+decena_numero(2, veinte, twenty).
+decena_numero(3, treinta, thirty).
+decena_numero(4, cuarenta, forty).
+decena_numero(5, cincuenta, fifty).
+decena_numero(6, sesenta, sixty).
+decena_numero(7, setenta, seventy).
+decena_numero(8, ochenta, eighty).
+decena_numero(9, noventa, ninety).
+
+% Tabla de unidades (1-9)
+unidad_numero(1, uno, one, masculino).
+unidad_numero(1, una, one, femenino).
+unidad_numero(2, dos, two, _).
+unidad_numero(3, tres, three, _).
+unidad_numero(4, cuatro, four, _).
+unidad_numero(5, cinco, five, _).
+unidad_numero(6, seis, six, _).
+unidad_numero(7, siete, seven, _).
+unidad_numero(8, ocho, eight, _).
+unidad_numero(9, nueve, nine, _).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NÚMEROS COMO DETERMINANTES (usando las mismas reglas)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Determinantes numéricos del 0-19 (definiciones explícitas)
+determinante(cero, zero, _, singular).
 determinante(uno, one, masculino, singular).
 determinante(una, one, femenino, singular).
 determinante(dos, two, _, _).
@@ -537,3 +614,26 @@ determinante(siete, seven, _, _).
 determinante(ocho, eight, _, _).
 determinante(nueve, nine, _, _).
 determinante(diez, ten, _, _).
+determinante(once, eleven, _, _).
+determinante(doce, twelve, _, _).
+determinante(trece, thirteen, _, _).
+determinante(catorce, fourteen, _, _).
+determinante(quince, fifteen, _, _).
+determinante(dieciséis, sixteen, _, _).
+determinante(diecisiete, seventeen, _, _).
+determinante(dieciocho, eighteen, _, _).
+determinante(diecinueve, nineteen, _, _).
+
+% REGLA PARA DETERMINANTES NUMÉRICOS DEL 20-99
+determinante(NumEs, NumEn, Gen, Num) :-
+    numero(NumEs, NumEn, Gen, Num),
+    \+ member(NumEs, [cero, uno, una, dos, tres, cuatro, cinco, seis, siete, ocho, nueve,
+                     diez, once, doce, trece, catorce, quince,
+                     dieciséis, diecisiete, dieciocho, diecinueve]).
+
+
+
+
+
+
+
