@@ -1,11 +1,12 @@
 :- consult('Logic.pl').
+encoding(utf16le).
 
 % TRADUCCIÃ“N ESPAÃ‘OL -> INGLÃ‰S
 % traducir_es_en/1: Traduce una oraciÃ³n del espaÃ±ol al inglÃ©s
 % ParÃ¡metro: OracionEs (string) - OraciÃ³n en espaÃ±ol a traducir
 traducir_es_en(OracionEs) :-
     separar(OracionEs, PalabrasEs),          % Convierte string a lista de palabras
-    (   oracion(PalabrasEs, _, PalabrasEn, _)  % Llama al analizador sintÃ¡ctico
+    (   oraciones(PalabrasEs, _, PalabrasEn, _)  % Llama al analizador sintÃ¡ctico
     ->  lista_a_string(PalabrasEn, Traduccion), % Convierte lista a string
         write('TraducciÃ³n: '), write(Traduccion), nl,! % Muestra resultado
     ;   write('No entendÃ­ la oraciÃ³n.'), nl          % Manejo de error
@@ -16,7 +17,7 @@ traducir_es_en(OracionEs) :-
 % ParÃ¡metro: OracionEn (string) - OraciÃ³n en inglÃ©s a traducir
 traducir_en_es(OracionEn) :-
     separar(OracionEn, PalabrasEn),          % Convierte string a lista de palabras
-    (   oracion(PalabrasEs, _, PalabrasEn, _)  % Llama al analizador sintÃ¡ctico
+    (   oraciones(PalabrasEs, _, PalabrasEn, _)  % Llama al analizador sintÃ¡ctico
     ->  lista_a_string(PalabrasEs, Traduccion), % Convierte lista a string
         write('TraducciÃ³n: '), write(Traduccion), nl,! % Muestra resultado
     ;   write('No entendÃ­ la oraciÃ³n.'), nl          % Manejo de error
@@ -55,28 +56,28 @@ lista_a_string(Lista, String) :-
 separar(Oracion, Palabras) :-
     split_string(Oracion, " ", "", Strings),  % Divide el string por espacios
     maplist(atom_string, Palabras, Strings). % Convierte strings a Ã¡tomos
-% PREDICADO PARA MOSTRAR NÚMEROS DISPONIBLES
-% mostrar_numeros/0: Muestra todos los números del 0 al 15 en ambos idiomas
+% PREDICADO PARA MOSTRAR Nï¿½MEROS DISPONIBLES
+% mostrar_numeros/0: Muestra todos los nï¿½meros del 0 al 15 en ambos idiomas
 mostrar_numeros :-
-    writeln('=== NÚMEROS DEL 0 AL 15 ==='),
-    writeln('Español    -> Inglés'),
+    writeln('=== Nï¿½MEROS DEL 0 AL 15 ==='),
+    writeln('Espaï¿½ol    -> Inglï¿½s'),
     forall(numero(Es, En, _, _),
            format('~w       -> ~w~n', [Es, En])).
 
-% PREDICADO PARA TRADUCIR SOLO NÚMEROS
-% traducir_numero/2: Traduce un número entre español e inglés
+% PREDICADO PARA TRADUCIR SOLO Nï¿½MEROS
+% traducir_numero/2: Traduce un nï¿½mero entre espaï¿½ol e inglï¿½s
 traducir_numero(Numero, Traduccion) :-
     (   numero(Numero, Traduccion, _, _)
     ;   numero(Traduccion, Numero, _, _)
     ).
 
-% EJEMPLOS DE USO CON NÚMEROS
-% probar_numeros/0: Prueba traducciones con números
+% EJEMPLOS DE USO CON Nï¿½MEROS
+% probar_numeros/0: Prueba traducciones con nï¿½meros
 probar_numeros :-
-    writeln('=== PRUEBAS CON NÚMEROS ==='),
+    writeln('=== PRUEBAS CON Nï¿½MEROS ==='),
     ejemplos_numeros(Ejemplos),
     forall(member(Espanol-Ingles, Ejemplos), (
-        format('Español: ~w~n', [Espanol]),
+        format('Espaï¿½ol: ~w~n', [Espanol]),
         ( traducir_es_en(Espanol) ->
             format('Esperado: ~w~n', [Ingles])
         ;
@@ -91,21 +92,21 @@ ejemplos_numeros([
     'una casa',
     'dos mujeres',
     'diez estudiantes',
-    'quince pájaros'
+    'quince pï¿½jaros'
 ]).
-% PREDICADO PARA MOSTRAR NÚMEROS DISPONIBLES
-% mostrar_numeros/0: Muestra todos los números del 0 al 99 en ambos idiomas
+% PREDICADO PARA MOSTRAR Nï¿½MEROS DISPONIBLES
+% mostrar_numeros/0: Muestra todos los nï¿½meros del 0 al 99 en ambos idiomas
 mostrar_numeros :-
-    writeln('=== NÚMEROS DEL 0 AL 99 ==='),
-    writeln('Español    -> Inglés'),
+    writeln('=== Nï¿½MEROS DEL 0 AL 99 ==='),
+    writeln('Espaï¿½ol    -> Inglï¿½s'),
     forall(numero(Es, En, _, _),
            format('~w       -> ~w~n', [Es, En])).
-% EJEMPLOS DE USO CON NÚMEROS EXTENDIDOS
+% EJEMPLOS DE USO CON Nï¿½MEROS EXTENDIDOS
 probar_numeros_extendidos :-
-    writeln('=== PRUEBAS CON NÚMEROS EXTENDIDOS ==='),
+    writeln('=== PRUEBAS CON Nï¿½MEROS EXTENDIDOS ==='),
     ejemplos_numeros_extendidos(Ejemplos),
     forall(member(Espanol-Ingles, Ejemplos), (
-        format('Español: ~w~n', [Espanol]),
+        format('Espaï¿½ol: ~w~n', [Espanol]),
         ( traducir_es_en(Espanol) ->
             format('Esperado: ~w~n', [Ingles])
         ;
@@ -115,10 +116,10 @@ probar_numeros_extendidos :-
     )).
 
 ejemplos_numeros_extendidos([
-    'dieciséis manzanas',
-    'veintiún libros',
+    'diecisï¿½is manzanas',
+    'veintiï¿½n libros',
     'veintiuna casas',
     'treinta y cinco estudiantes',
-    'cincuenta y ocho pájaros',
+    'cincuenta y ocho pï¿½jaros',
     'setenta y dos mujeres'
 ]).

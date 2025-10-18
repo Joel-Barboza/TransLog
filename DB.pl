@@ -1,3 +1,4 @@
+encoding(utf16le).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% DETERMINANTES: determinante(EspaÃ±ol, InglÃ©s, GÃ©nero, NÃºmero)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,12 +72,19 @@ sustantivo(perra, dog, femenino, singular).
 sustantivo(gato, cat, masculino, singular).
 sustantivo(gata, cat, femenino, singular).
 sustantivo(pÃ¡jaro, bird, masculino, singular).
-sustantivo(pÃ¡jara, bird, femenino, singular).
 sustantivo(caballo, horse, masculino, singular).
-sustantivo(yegua, horse, femenino, singular).
 sustantivo(pez, fish, masculino, singular).
 sustantivo(vaca, cow, femenino, singular).
 sustantivo(cerdo, pig, masculino, singular).
+% Animales plurales
+sustantivo(perros, dogs, masculino, plural).
+sustantivo(gatos, cats, masculino, plural).
+sustantivo(pÃ¡jaros, birds, masculino, plural).
+sustantivo(caballos, horses, masculino, plural).
+sustantivo(peces, fishes, masculino, plural).
+sustantivo(vacas, cows, femenino, plural).
+sustantivo(cerdos, pigs, masculino, plural).
+
 
 % Alimentos
 sustantivo(manzana, apple, femenino, singular).
@@ -450,6 +458,8 @@ adverbio(nunca, never).
 adverbio(a menudo, often).*/
 adverbio(rÃ¡pidamente, quickly).
 adverbio(lentamente, slowly).
+adverbio(rÃ¡pido, fast).
+adverbio(lento, slow).
 adverbio(bien, well).
 adverbio(mal, badly).
 adverbio(muy, very).
@@ -464,6 +474,108 @@ adverbio(probablemente, probably).
 adverbio(realmente, really).
 adverbio(definitivamente, definitely).
 
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ADVERBIOS CLASIFICADOS POR TIPO
+%% Formato: adverbio(EspaÃ±ol, InglÃ©s, Tipo)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ADVERBIOS DE TIEMPO
+adverbio(ahora, now, tiempo).
+adverbio(despuÃ©s, after, tiempo).
+adverbio(antes, before, tiempo).
+adverbio(siempre, always, tiempo).
+adverbio(nunca, never, tiempo).
+adverbio(a_veces, sometimes, tiempo).
+adverbio(a_menudo, often, tiempo).
+adverbio(frecuentemente, frequently, tiempo).
+adverbio(raramente, rarely, tiempo).
+adverbio(pronto, soon, tiempo).
+adverbio(tarde, late, tiempo).
+adverbio(temprano, early, tiempo).
+adverbio(ayer, yesterday, tiempo).
+adverbio(hoy, today, tiempo).
+adverbio(maÃ±ana, tomorrow, tiempo).
+adverbio(anoche, last_night, tiempo).
+adverbio(inmediatamente, immediately, tiempo).
+
+% ADVERBIOS DE LUGAR
+adverbio(aquÃ­, here, lugar).
+adverbio(allÃ­, there, lugar).
+adverbio(allÃ¡, over_there, lugar).
+adverbio(cerca, near, lugar).
+adverbio(lejos, far, lugar).
+adverbio(arriba, up, lugar).
+adverbio(abajo, down, lugar).
+adverbio(dentro, inside, lugar).
+adverbio(fuera, outside, lugar).
+adverbio(adelante, forward, lugar).
+adverbio(atrÃ¡s, behind, lugar).
+adverbio(enfrente, in_front, lugar).
+adverbio(alrededor, around, lugar).
+
+% ADVERBIOS DE MODO
+adverbio(rÃ¡pidamente, quickly, modo).
+adverbio(lentamente, slowly, modo).
+adverbio(rÃ¡pido, fast, modo).
+adverbio(lento, slow, modo).
+adverbio(bien, well, modo).
+adverbio(mal, badly, modo).
+adverbio(cuidadosamente, carefully, modo).
+adverbio(fÃ¡cilmente, easily, modo).
+adverbio(difÃ­cilmente, hardly, modo).
+adverbio(claramente, clearly, modo).
+adverbio(fuertemente, strongly, modo).
+adverbio(suavemente, gently, modo).
+adverbio(seriamente, seriously, modo).
+adverbio(perfectamente, perfectly, modo).
+
+% ADVERBIOS DE CANTIDAD
+adverbio(muy, very, cantidad).
+adverbio(mucho, much, cantidad).
+adverbio(poco, little, cantidad).
+adverbio(demasiado, too, cantidad).
+adverbio(bastante, quite, cantidad).
+adverbio(suficiente, enough, cantidad).
+adverbio(apenas, barely, cantidad).
+adverbio(casi, almost, cantidad).
+adverbio(solo, only, cantidad).
+adverbio(exactamente, exactly, cantidad).
+adverbio(aproximadamente, approximately, cantidad).
+adverbio(completamente, completely, cantidad).
+
+% ADVERBIOS DE AFIRMACIÃ“N
+adverbio(sÃ­, yes, afirmacion).
+adverbio(tambiÃ©n, also, afirmacion).
+adverbio(ciertamente, certainly, afirmacion).
+adverbio(efectivamente, effectively, afirmacion).
+adverbio(obviamente, obviously, afirmacion).
+adverbio(realmente, really, afirmacion).
+adverbio(definitivamente, definitely, afirmacion).
+adverbio(seguramente, surely, afirmacion).
+adverbio(claro, of_course, afirmacion).
+adverbio(justamente, exactly, afirmacion).
+
+% ADVERBIOS DE NEGACIÃ“N
+adverbio(no, no, negacion).
+adverbio(tampoco, neither, negacion).
+adverbio(jamÃ¡s, never, negacion).
+adverbio(nunca, never, negacion).
+adverbio(en_absoluto, absolutely_not, negacion).
+
+% ADVERBIOS DE DUDA
+adverbio(quizÃ¡s, maybe, duda).
+adverbio(quizÃ¡, maybe, duda).
+adverbio(probablemente, probably, duda).
+adverbio(posiblemente, possibly, duda).
+adverbio(tal_vez, perhaps, duda).
+adverbio(acaso, perhaps, duda).
+adverbio(aparentemente, apparently, duda).
+adverbio(supuestamente, supposedly, duda).
+
+ */
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CONJUNCIONES: conjuncion(EspaÃ±ol, InglÃ©s)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -475,7 +587,7 @@ conjuncion(porque, because).
 conjuncion(si, if).
 conjuncion(aunque, although).
 conjuncion(mientras, while).
-conjuncion(como, as).
+/*conjuncion(como, as).*/
 conjuncion(que, that).
 conjuncion(cuando, when).
 conjuncion(donde, where).
@@ -503,10 +615,10 @@ interjeccion(Â¡cuidado!, careful).*/
 /*unidades(uno, one).
 unidades(dos, two).*/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% NÚMEROS: numero(Español, Inglés, Género, Número)
+%% Nï¿½MEROS: numero(Espaï¿½ol, Inglï¿½s, Gï¿½nero, Nï¿½mero)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Números cardinales del 0 al 15 (ya existentes)
+% Nï¿½meros cardinales del 0 al 15 (ya existentes)
 numero(cero, zero, _, singular).
 numero(uno, one, masculino, singular).
 numero(una, one, femenino, singular).
@@ -525,15 +637,15 @@ numero(trece, thirteen, _, _).
 numero(catorce, fourteen, _, _).
 numero(quince, fifteen, _, _).
 
-% Números del 16 al 19: dieci + número base
-numero(dieciséis, sixteen, _, _).
+% Nï¿½meros del 16 al 19: dieci + nï¿½mero base
+numero(diecisÃ©is, sixteen, _, _).
 numero(diecisiete, seventeen, _, _).
 numero(dieciocho, eighteen, _, _).
 numero(diecinueve, nineteen, _, _).
 
 % DECENAS BASE
 numero(veinte, twenty, _, _).
-numero(veinti, twenty, _, _).  % Para composición
+numero(veinti, twenty, _, _).  % Para composiciï¿½n
 numero(treinta, thirty, _, _).
 numero(cuarenta, forty, _, _).
 numero(cincuenta, fifty, _, _).
@@ -542,7 +654,7 @@ numero(setenta, seventy, _, _).
 numero(ochenta, eighty, _, _).
 numero(noventa, ninety, _, _).
 
-% REGLA PARA NÚMEROS DEL 21-29 (veinti + unidad)
+% REGLA PARA Nï¿½MEROS DEL 21-29 (veinti + unidad)
 numero(NumEs, NumEn, Gen, Num) :-
     between(1, 9, Unidad),
     unidad_numero(Unidad, UnidadEs, UnidadEn, _),
@@ -554,7 +666,7 @@ numero(NumEs, NumEn, Gen, Num) :-
         atom_concat('twenty_', UnidadEn, NumEn)
     ).
 
-% REGLA PARA NÚMEROS DEL 31-99 (decena + "y" + unidad)
+% REGLA PARA Nï¿½MEROS DEL 31-99 (decena + "y" + unidad)
 numero(NumEs, NumEn, Gen, Num) :-
     between(3, 9, DecenaIdx),
     decena_numero(DecenaIdx, DecenaEs, DecenaEn),
@@ -598,10 +710,10 @@ unidad_numero(8, ocho, eight, _).
 unidad_numero(9, nueve, nine, _).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% NÚMEROS COMO DETERMINANTES (usando las mismas reglas)
+%% Nï¿½MEROS COMO DETERMINANTES (usando las mismas reglas)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Determinantes numéricos del 0-19 (definiciones explícitas)
+% Determinantes numï¿½ricos del 0-19 (definiciones explï¿½citas)
 determinante(cero, zero, _, singular).
 determinante(uno, one, masculino, singular).
 determinante(una, one, femenino, singular).
@@ -619,17 +731,17 @@ determinante(doce, twelve, _, _).
 determinante(trece, thirteen, _, _).
 determinante(catorce, fourteen, _, _).
 determinante(quince, fifteen, _, _).
-determinante(dieciséis, sixteen, _, _).
+determinante(diecisÃ©is, sixteen, _, _).
 determinante(diecisiete, seventeen, _, _).
 determinante(dieciocho, eighteen, _, _).
 determinante(diecinueve, nineteen, _, _).
 
-% REGLA PARA DETERMINANTES NUMÉRICOS DEL 20-99
+% REGLA PARA DETERMINANTES NUMï¿½RICOS DEL 20-99
 determinante(NumEs, NumEn, Gen, Num) :-
     numero(NumEs, NumEn, Gen, Num),
     \+ member(NumEs, [cero, uno, una, dos, tres, cuatro, cinco, seis, siete, ocho, nueve,
                      diez, once, doce, trece, catorce, quince,
-                     dieciséis, diecisiete, dieciocho, diecinueve]).
+                     diecisÃ©is, diecisiete, dieciocho, diecinueve]).
 
 
 
