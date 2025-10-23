@@ -36,11 +36,48 @@ determinante(tus, your, _, plural).
 determinante(su, his, _, singular).  % también her, its, your formal
 determinante(sus, his, _, plural).
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% N�MEROS COMO DETERMINANTES (usando las mismas reglas)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Determinantes num�ricos del 0-19 (definiciones expl�citas)
+determinante(cero, zero, _, singular).
+determinante(uno, one, masculino, singular).
+determinante(una, one, femenino, singular).
+determinante(dos, two, _, _).
+determinante(tres, three, _, _).
+determinante(cuatro, four, _, _).
+determinante(cinco, five, _, _).
+determinante(seis, six, _, _).
+determinante(siete, seven, _, _).
+determinante(ocho, eight, _, _).
+determinante(nueve, nine, _, _).
+determinante(diez, ten, _, _).
+determinante(once, eleven, _, _).
+determinante(doce, twelve, _, _).
+determinante(trece, thirteen, _, _).
+determinante(catorce, fourteen, _, _).
+determinante(quince, fifteen, _, _).
+determinante(dieciséis, sixteen, _, _).
+determinante(diecisiete, seventeen, _, _).
+determinante(dieciocho, eighteen, _, _).
+determinante(diecinueve, nineteen, _, _).
+
+% REGLA PARA DETERMINANTES NUM�RICOS DEL 20-99
+determinante(NumEs, NumEn, Gen, Num) :-
+    numero(NumEs, NumEn, Gen, Num),
+    \+ member(NumEs, [cero, uno, una, dos, tres, cuatro, cinco, seis, siete, ocho, nueve,
+                     diez, once, doce, trece, catorce, quince,
+                     dieciséis, diecisiete, dieciocho, diecinueve]).
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% SUSTANTIVOS: sustantivo(Español, Inglés, Género, Número)
+%% SUSTANTIVOS CON SINÓNIMOS
+%% Formato: sustantivo(Español, Inglés, ListaSinonimos, Género, Número)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Personas
+/*% Personas
 sustantivo(hombre, man, masculino, singular).
 sustantivo(mujer, woman, femenino, singular).
 sustantivo(niño, boy, masculino, singular).
@@ -154,6 +191,122 @@ sustantivo(problema, problem, masculino, singular).
 sustantivo(solución, solution, femenino, singular).
 sustantivo(pregunta, question, femenino, singular).
 sustantivo(respuesta, answer, femenino, singular).
+*/
+
+% Personas
+sustantivo(hombre, man, [[varón, male], [individuo, individual], [señor, mister]], masculino, singular).
+sustantivo(mujer, woman, [[dama, lady], [señora, madam], [fémina, female]], femenino, singular).
+sustantivo(niño, boy, [[chico, boy], [muchacho, lad], [pequeño, little_boy]], masculino, singular).
+sustantivo(niña, girl, [[chica, girl], [muchacha, lass], [pequeña, little_girl]], femenino, singular).
+sustantivo(amigo, friend, [[compañero, companion], [colega, colleague], [camarada, comrade]], masculino, singular).
+sustantivo(amiga, friend, [[compañera, companion], [colega, colleague], [camarada, comrade]], femenino, singular).
+sustantivo(profesor, teacher, [[maestro, teacher], [educador, educator], [instructor, instructor]], masculino, singular).
+sustantivo(profesora, teacher, [[maestra, teacher], [educadora, educator], [instructora, instructor]], femenino, singular).
+sustantivo(doctor, doctor, [[médico, physician], [galeno, doctor], [facultativo, practitioner]], masculino, singular).
+sustantivo(doctora, doctor, [[médica, physician], [galena, doctor], [facultativa, practitioner]], femenino, singular).
+sustantivo(estudiante, student, [[alumno, pupil], [discípulo, disciple], [educando, learner]], masculino, singular).
+sustantivo(estudiante, student, [[alumna, pupil], [discípula, disciple], [educanda, learner]], femenino, singular).
+sustantivo(padre, father, [[papá, dad], [progenitor, parent], [tata, daddy]], masculino, singular).
+sustantivo(madre, mother, [[mamá, mom], [progenitora, parent], [mami, mommy]], femenino, singular).
+sustantivo(hermano, brother, [[sibling, sibling]], masculino, singular).
+sustantivo(hermana, sister, [[sibling, sibling]], femenino, singular).
+
+% Plurales de personas
+sustantivo(hombres, men, [[varones, males], [individuos, individuals]], masculino, plural).
+sustantivo(mujeres, women, [[damas, ladies], [señoras, women]], femenino, plural).
+sustantivo(niños, boys, [[chicos, boys], [muchachos, lads]], masculino, plural).
+sustantivo(niñas, girls, [[chicas, girls], [muchachas, lasses]], femenino, plural).
+sustantivo(amigos, friends, [[compañeros, companions], [colegas, colleagues]], masculino, plural).
+sustantivo(amigas, friends, [[compañeras, companions], [colegas, colleagues]], femenino, plural).
+
+% Animales
+sustantivo(perro, dog, [[can, canine], [chucho, mutt]], masculino, singular).
+sustantivo(perra, dog, [[can, canine]], femenino, singular).
+sustantivo(gato, cat, [[felino, feline], [minino, kitty]], masculino, singular).
+sustantivo(gata, cat, [[felina, feline], [minina, kitty]], femenino, singular).
+sustantivo(pájaro, bird, [[ave, bird], [pajarillo, little_bird]], masculino, singular).
+sustantivo(caballo, horse, [[equino, equine], [corcel, steed]], masculino, singular).
+sustantivo(pez, fish, [[pezcado, fish]], masculino, singular).
+sustantivo(vaca, cow, [[bovino, bovine], [res, head_of_cattle]], femenino, singular).
+sustantivo(cerdo, pig, [[puerco, hog], [cochino, swine], [marrano, pig]], masculino, singular).
+
+% Animales plurales
+sustantivo(perros, dogs, [[canes, canines]], masculino, plural).
+sustantivo(gatos, cats, [[felinos, felines]], masculino, plural).
+sustantivo(pájaros, birds, [[aves, birds]], masculino, plural).
+sustantivo(caballos, horses, [[equinos, equines]], masculino, plural).
+sustantivo(peces, fishes, [[peces, fishes]], masculino, plural).
+sustantivo(vacas, cows, [[bovinos, bovines]], femenino, plural).
+sustantivo(cerdos, pigs, [[puercos, hogs], [cochinos, swines]], masculino, plural).
+
+% Alimentos
+sustantivo(manzana, apple, _, femenino, singular).
+sustantivo(pan, bread, _, masculino, singular).
+sustantivo(agua, water, _, femenino, singular).
+sustantivo(leche, milk, _, femenino, singular).
+sustantivo(carne, meat, [[carne, meat]], femenino, singular).
+sustantivo(pescado, fish, [[pescado, fish]], masculino, singular).
+sustantivo(arroz, rice, _, masculino, singular).
+sustantivo(pasta, pasta, _, femenino, singular).
+sustantivo(queso, cheese, _, masculino, singular).
+sustantivo(fruta, fruit, _, femenino, singular).
+sustantivo(verdura, vegetable, [[hortaliza, vegetable]], femenino, singular).
+sustantivo(jugo, juice, [[zumo, juice]], masculino, singular).
+sustantivo(café, coffee, _, masculino, singular).
+sustantivo(té, tea, _, masculino, singular).
+
+% Plurales de alimentos
+sustantivo(manzanas, apples, _, femenino, plural).
+sustantivo(panes, breads, _, masculino, plural).
+sustantivo(carnes, meats, _, femenino, plural).
+
+% Objetos y lugares
+sustantivo(casa, house, [[hogar, home], [vivienda, dwelling], [morada, residence]], femenino, singular).
+sustantivo(carro, car, [[automóvil, automobile], [vehículo, vehicle], [coche, car]], masculino, singular).
+sustantivo(libro, book, [[volumen, volume], [ejemplar, copy], [texto, text]], masculino, singular).
+sustantivo(mesa, table, [[tabla, board], [mesa, table]], femenino, singular).
+sustantivo(silla, chair, [[asiento, seat], [sillón, armchair]], femenino, singular).
+sustantivo(ventana, window, [[vidriera, glass_window]], femenino, singular).
+sustantivo(puerta, door, [[portal, portal], [entrada, entrance]], femenino, singular).
+sustantivo(ciudad, city, [[urbe, city], [metrópoli, metropolis]], femenino, singular).
+sustantivo(pueblo, town, [[villa, town], [municipio, municipality]], masculino, singular).
+sustantivo(país, country, [[nación, nation], [estado, state]], masculino, singular).
+sustantivo(escuela, school, [[colegio, school], [institución, institution]], femenino, singular).
+sustantivo(colegio, school, [[escuela, school], [institución, institution]], masculino, singular).
+sustantivo(universidad, university, [[uni, uni], [alma_máter, alma_mater]], femenino, singular).
+sustantivo(trabajo, work, [[empleo, job], [ocupación, occupation]], masculino, singular).
+sustantivo(oficina, office, [[despacho, office], [sede, headquarters]], femenino, singular).
+sustantivo(parque, park, [[jardín, garden], [área_verde, green_area]], masculino, singular).
+sustantivo(jardín, garden, [[parque, park], [huerto, orchard]], masculino, singular).
+sustantivo(baño, bathroom, [[aseo, restroom], [servicio, toilet]], masculino, singular).
+sustantivo(cocina, kitchen, [[cocina, kitchen]], femenino, singular).
+sustantivo(habitación, room, [[cuarto, room], [dormitorio, bedroom]], femenino, singular).
+sustantivo(dormitorio, bedroom, [[habitación, room], [alcoba, bedchamber]], masculino, singular).
+
+% Plurales de objetos
+sustantivo(casas, houses, [[hogares, homes], [viviendas, dwellings]], femenino, plural).
+sustantivo(coches, cars, [[automóviles, automobiles], [vehículos, vehicles]], masculino, plural).
+sustantivo(libros, books, [[volúmenes, volumes], [ejemplares, copies]], masculino, plural).
+sustantivo(mesas, tables, _, femenino, plural).
+sustantivo(sillas, chairs, [[asientos, seats]], femenino, plural).
+
+% Conceptos abstractos y otros
+sustantivo(tiempo, time, [[momento, moment], [época, era]], masculino, singular).
+sustantivo(día, day, [[jornada, day], [fecha, date]], masculino, singular).
+sustantivo(noche, night, [[anochecer, nightfall], [ocaso, dusk]], femenino, singular).
+sustantivo(semana, week, [[hebdomada, week]], femenino, singular).
+sustantivo(mes, month, _, masculino, singular).
+sustantivo(año, year, [[ejercicio, fiscal_year]], masculino, singular).
+sustantivo(vida, life, [[existencia, existence], [biografía, biography]], femenino, singular).
+sustantivo(amor, love, [[cariño, affection], [apego, attachment]], masculino, singular).
+sustantivo(odio, hate, [[aversión, aversion], [repulsión, repulsion]], masculino, singular).
+sustantivo(felicidad, happiness, [[alegría, joy], [gozo, delight]], femenino, singular).
+sustantivo(tristeza, sadness, [[pena, sorrow], [melancolía, melancholy]], femenino, singular).
+sustantivo(problema, problem, [[dificultad, difficulty], [inconveniente, inconvenience]], masculino, singular).
+sustantivo(solución, solution, [[respuesta, answer], [remedio, remedy]], femenino, singular).
+sustantivo(pregunta, question, [[interrogante, query], [cuestión, matter]], femenino, singular).
+sustantivo(respuesta, answer, [[réplica, reply], [contestación, response]], femenino, singular).
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% VERBOS: verbo(Español, Inglés, Persona, Número)
@@ -162,6 +315,7 @@ sustantivo(respuesta, answer, femenino, singular).
 % Verbo COMER (to eat)
 verbo(como, eat, 1, singular).
 verbo(comes, eat, 2, singular).
+verbo(come, eat, 2, singular). %usted
 verbo(come, eats, 3, singular).
 verbo(comemos, eat, 1, plural).
 verbo(coméis, eat, 2, plural).
@@ -170,6 +324,7 @@ verbo(comen, eat, 3, plural).
 % Verbo BEBER (to drink)
 verbo(bebo, drink, 1, singular).
 verbo(bebes, drink, 2, singular).
+verbo(bebe, drink, 2, singular).
 verbo(bebe, drinks, 3, singular).
 verbo(bebemos, drink, 1, plural).
 verbo(bebéis, drink, 2, plural).
@@ -178,6 +333,7 @@ verbo(beben, drink, 3, plural).
 % Verbo HABLAR (to speak/talk)
 verbo(hablo, speak, 1, singular).
 verbo(hablas, speak, 2, singular).
+verbo(habla, speak, 2, singular).
 verbo(habla, speaks, 3, singular).
 verbo(hablamos, speak, 1, plural).
 verbo(habláis, speak, 2, plural).
@@ -186,6 +342,7 @@ verbo(hablan, speak, 3, plural).
 % Verbo ESCRIBIR (to write)
 verbo(escribo, write, 1, singular).
 verbo(escribes, write, 2, singular).
+verbo(escribe, write, 2, singular).
 verbo(escribe, writes, 3, singular).
 verbo(escribimos, write, 1, plural).
 verbo(escribís, write, 2, plural).
@@ -194,6 +351,7 @@ verbo(escriben, write, 3, plural).
 % Verbo LEER (to read)
 verbo(leo, read, 1, singular).
 verbo(lees, read, 2, singular).
+verbo(lee, read, 2, singular).
 verbo(lee, reads, 3, singular).
 verbo(leemos, read, 1, plural).
 verbo(leéis, read, 2, plural).
@@ -202,6 +360,7 @@ verbo(leen, read, 3, plural).
 % Verbo ESTUDIAR (to study)
 verbo(estudio, study, 1, singular).
 verbo(estudias, study, 2, singular).
+verbo(estudia, study, 2, singular).
 verbo(estudia, studies, 3, singular).
 verbo(estudiamos, study, 1, plural).
 verbo(estudiáis, study, 2, plural).
@@ -210,6 +369,7 @@ verbo(estudian, study, 3, plural).
 % Verbo TRABAJAR (to work)
 verbo(trabajo, work, 1, singular).
 verbo(trabajas, work, 2, singular).
+verbo(trabaja, work, 2, singular).
 verbo(trabaja, works, 3, singular).
 verbo(trabajamos, work, 1, plural).
 verbo(trabajáis, work, 2, plural).
@@ -218,6 +378,7 @@ verbo(trabajan, work, 3, plural).
 % Verbo VIVIR (to live)
 verbo(vivo, live, 1, singular).
 verbo(vives, live, 2, singular).
+verbo(vive, live, 2, singular).
 verbo(vive, lives, 3, singular).
 verbo(vivimos, live, 1, plural).
 verbo(vivís, live, 2, plural).
@@ -226,6 +387,7 @@ verbo(viven, live, 3, plural).
 % Verbo AMAR (to love)
 verbo(amo, love, 1, singular).
 verbo(amas, love, 2, singular).
+verbo(ama, love, 2, singular).
 verbo(ama, loves, 3, singular).
 verbo(amamos, love, 1, plural).
 verbo(amáis, love, 2, plural).
@@ -234,6 +396,7 @@ verbo(aman, love, 3, plural).
 % Verbo CANTAR (to sing)
 verbo(canto, sing, 1, singular).
 verbo(cantas, sing, 2, singular).
+verbo(canta, sing, 2, singular).
 verbo(canta, sings, 3, singular).
 verbo(cantamos, sing, 1, plural).
 verbo(cantáis, sing, 2, plural).
@@ -242,6 +405,7 @@ verbo(cantan, sing, 3, plural).
 % Verbo BAILAR (to dance)
 verbo(bailo, dance, 1, singular).
 verbo(bailas, dance, 2, singular).
+verbo(baila, dance, 2, singular).
 verbo(baila, dances, 3, singular).
 verbo(bailamos, dance, 1, plural).
 verbo(bailáis, dance, 2, plural).
@@ -250,6 +414,7 @@ verbo(bailan, dance, 3, plural).
 % Verbo CORRER (to run)
 verbo(corro, run, 1, singular).
 verbo(corres, run, 2, singular).
+verbo(corre, run, 2, singular).
 verbo(corre, runs, 3, singular).
 verbo(corremos, run, 1, plural).
 verbo(corréis, run, 2, plural).
@@ -258,6 +423,7 @@ verbo(corren, run, 3, plural).
 % Verbo NADAR (to swim)
 verbo(nado, swim, 1, singular).
 verbo(nadas, swim, 2, singular).
+verbo(nada, swim, 2, singular).
 verbo(nada, swims, 3, singular).
 verbo(nadamos, swim, 1, plural).
 verbo(nadáis, swim, 2, plural).
@@ -266,6 +432,7 @@ verbo(nadan, swim, 3, plural).
 % Verbo DORMIR (to sleep)
 verbo(duermo, sleep, 1, singular).
 verbo(duermes, sleep, 2, singular).
+verbo(duerme, sleep, 2, singular).
 verbo(duerme, sleeps, 3, singular).
 verbo(dormimos, sleep, 1, plural).
 verbo(dormís, sleep, 2, plural).
@@ -274,6 +441,7 @@ verbo(duermen, sleep, 3, plural).
 % Verbo ENTENDER (to understand)
 verbo(entiendo, understand, 1, singular).
 verbo(entiendes, understand, 2, singular).
+verbo(entiende, understand, 2, singular).
 verbo(entiende, understands, 3, singular).
 verbo(entendemos, understand, 1, plural).
 verbo(entendéis, understand, 2, plural).
@@ -282,6 +450,7 @@ verbo(entienden, understand, 3, plural).
 % Verbo SABER (to know)
 verbo(sé, know, 1, singular).
 verbo(sabes, know, 2, singular).
+verbo(sabe, know, 2, singular).
 verbo(sabe, knows, 3, singular).
 verbo(sabemos, know, 1, plural).
 verbo(sabéis, know, 2, plural).
@@ -290,10 +459,52 @@ verbo(saben, know, 3, plural).
 % Verbo CONOCER (to know/meet)
 verbo(conozco, know, 1, singular).
 verbo(conoces, know, 2, singular).
+verbo(conoce, know, 2, singular).
 verbo(conoce, knows, 3, singular).
 verbo(conocemos, know, 1, plural).
 verbo(conocéis, know, 2, plural).
 verbo(conocen, know, 3, plural).
+
+
+% VERBO ESTAR (to be - temporary/states/locations)
+verbo_be(estoy, am, 1, singular).
+verbo_be(estás, are, 2, singular).
+verbo_be(está, is, 3, singular).
+verbo_be(estamos, are, 1, plural).
+verbo_be(estáis, are, 2, plural).
+verbo_be(están, are, 2, plural).
+verbo_be(están, are, 3, plural).
+
+
+% VERBO SER (to be - essential/permanent qualities)
+verbo_be(soy, am, 1, singular).
+verbo_be(eres, are, 2, singular).
+verbo_be(es, is, 3, singular).
+verbo_be(somos, are, 1, plural).
+verbo_be(sois, are, 2, plural).
+verbo_be(son, are, 2, plural).
+verbo_be(son, are, 3, plural).
+
+
+% Gerundios para todos los verbos
+gerundio(comiendo, eating).
+gerundio(bebiendo, drinking).
+gerundio(hablando, speaking).
+gerundio(escribiendo, writing).
+gerundio(leyendo, reading).
+gerundio(estudiando, studying).
+gerundio(trabajando, working).
+gerundio(viviendo, living).
+gerundio(amando, loving).
+gerundio(cantando, singing).
+gerundio(bailando, dancing).
+gerundio(corriendo, running).
+gerundio(nadando, swimming).
+gerundio(durmiendo, sleeping).
+gerundio(entendiendo, understanding).
+gerundio(sabiendo, knowing).
+gerundio(conociendo, knowing).
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -447,133 +658,23 @@ preposicion(tras, after).
 %% ADVERBIOS: adverbio(Español, Inglés)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-adverbio(aquí, here).
-adverbio(allí, there).
-adverbio(ahora, now).
-adverbio(después, after).
-adverbio(antes, before).
-adverbio(siempre, always).
-adverbio(nunca, never).
-/*adverbio(a veces, sometimes).
-adverbio(a menudo, often).*/
 adverbio(rápidamente, quickly).
 adverbio(lentamente, slowly).
 adverbio(rápido, fast).
 adverbio(lento, slow).
 adverbio(bien, well).
 adverbio(mal, badly).
-adverbio(muy, very).
-adverbio(mucho, much).
-adverbio(poco, little).
-adverbio(demasiado, too).
-adverbio(también, also).
-adverbio(tampoco, neither).
-adverbio(solamente, only).
-adverbio(quizás, maybe).
-adverbio(probablemente, probably).
-adverbio(realmente, really).
-adverbio(definitivamente, definitely).
+adverbio(cuidadosamente, carefully).
+adverbio(fácilmente, easily).
+adverbio(difícilmente, hardly).
+adverbio(claramente, clearly).
+adverbio(fuertemente, strongly).
+adverbio(suavemente, gently).
+adverbio(seriamente, seriously).
+adverbio(perfectamente, perfectly).
 
-/*
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% ADVERBIOS CLASIFICADOS POR TIPO
-%% Formato: adverbio(Español, Inglés, Tipo)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% ADVERBIOS DE TIEMPO
-adverbio(ahora, now, tiempo).
-adverbio(después, after, tiempo).
-adverbio(antes, before, tiempo).
-adverbio(siempre, always, tiempo).
-adverbio(nunca, never, tiempo).
-adverbio(a_veces, sometimes, tiempo).
-adverbio(a_menudo, often, tiempo).
-adverbio(frecuentemente, frequently, tiempo).
-adverbio(raramente, rarely, tiempo).
-adverbio(pronto, soon, tiempo).
-adverbio(tarde, late, tiempo).
-adverbio(temprano, early, tiempo).
-adverbio(ayer, yesterday, tiempo).
-adverbio(hoy, today, tiempo).
-adverbio(mañana, tomorrow, tiempo).
-adverbio(anoche, last_night, tiempo).
-adverbio(inmediatamente, immediately, tiempo).
-
-% ADVERBIOS DE LUGAR
-adverbio(aquí, here, lugar).
-adverbio(allí, there, lugar).
-adverbio(allá, over_there, lugar).
-adverbio(cerca, near, lugar).
-adverbio(lejos, far, lugar).
-adverbio(arriba, up, lugar).
-adverbio(abajo, down, lugar).
-adverbio(dentro, inside, lugar).
-adverbio(fuera, outside, lugar).
-adverbio(adelante, forward, lugar).
-adverbio(atrás, behind, lugar).
-adverbio(enfrente, in_front, lugar).
-adverbio(alrededor, around, lugar).
-
-% ADVERBIOS DE MODO
-adverbio(rápidamente, quickly, modo).
-adverbio(lentamente, slowly, modo).
-adverbio(rápido, fast, modo).
-adverbio(lento, slow, modo).
-adverbio(bien, well, modo).
-adverbio(mal, badly, modo).
-adverbio(cuidadosamente, carefully, modo).
-adverbio(fácilmente, easily, modo).
-adverbio(difícilmente, hardly, modo).
-adverbio(claramente, clearly, modo).
-adverbio(fuertemente, strongly, modo).
-adverbio(suavemente, gently, modo).
-adverbio(seriamente, seriously, modo).
-adverbio(perfectamente, perfectly, modo).
-
-% ADVERBIOS DE CANTIDAD
-adverbio(muy, very, cantidad).
-adverbio(mucho, much, cantidad).
-adverbio(poco, little, cantidad).
-adverbio(demasiado, too, cantidad).
-adverbio(bastante, quite, cantidad).
-adverbio(suficiente, enough, cantidad).
-adverbio(apenas, barely, cantidad).
-adverbio(casi, almost, cantidad).
-adverbio(solo, only, cantidad).
-adverbio(exactamente, exactly, cantidad).
-adverbio(aproximadamente, approximately, cantidad).
-adverbio(completamente, completely, cantidad).
-
-% ADVERBIOS DE AFIRMACIÓN
-adverbio(sí, yes, afirmacion).
-adverbio(también, also, afirmacion).
-adverbio(ciertamente, certainly, afirmacion).
-adverbio(efectivamente, effectively, afirmacion).
-adverbio(obviamente, obviously, afirmacion).
-adverbio(realmente, really, afirmacion).
-adverbio(definitivamente, definitely, afirmacion).
-adverbio(seguramente, surely, afirmacion).
-adverbio(claro, of_course, afirmacion).
-adverbio(justamente, exactly, afirmacion).
-
-% ADVERBIOS DE NEGACIÓN
-adverbio(no, no, negacion).
-adverbio(tampoco, neither, negacion).
-adverbio(jamás, never, negacion).
-adverbio(nunca, never, negacion).
-adverbio(en_absoluto, absolutely_not, negacion).
-
-% ADVERBIOS DE DUDA
-adverbio(quizás, maybe, duda).
-adverbio(quizá, maybe, duda).
-adverbio(probablemente, probably, duda).
-adverbio(posiblemente, possibly, duda).
-adverbio(tal_vez, perhaps, duda).
-adverbio(acaso, perhaps, duda).
-adverbio(aparentemente, apparently, duda).
-adverbio(supuestamente, supposedly, duda).
-
- */
+% Adverbio de negación
+adverbio(no, not).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -587,33 +688,34 @@ conjuncion(porque, because).
 conjuncion(si, if).
 conjuncion(aunque, although).
 conjuncion(mientras, while).
-/*conjuncion(como, as).*/
 conjuncion(que, that).
 conjuncion(cuando, when).
 conjuncion(donde, where).
 conjuncion(por, for).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% INTERJECCIONES: interjeccion(Español, Inglés)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-/*interjeccion(hola, hello).
-interjeccion(adiós, goodbye).
-interjeccion(gracias, thank).
-interjeccion(por favor, please).
-interjeccion(lo siento, sorry).
-interjeccion(sí, yes).
-interjeccion(no, no).
-interjeccion(okay, okay).
-interjeccion(¡eh!, hey).
-interjeccion(¡vaya!, wow).
-interjeccion(¡cuidado!, careful).*/
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Numeros
+%% PREGUNTAS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-/*unidades(uno, one).
-unidades(dos, two).*/
+
+
+pregunta(qué, what, _).
+pregunta(quién, who, singular).
+pregunta(quiénes, who, plural).
+pregunta(dónde, where, _).
+pregunta(cuándo, when, _).
+pregunta(por_qué, why, _).
+pregunta(cómo, how, _).
+pregunta(cuál, which, singular).
+pregunta(cuáles, which, plural).
+pregunta(cuánto, how_much, singular).
+pregunta(cuánta, how_much, singular).
+pregunta(cuántos, how_many, plural).
+pregunta(cuántas, how_many, plural).
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% N�MEROS: numero(Espa�ol, Ingl�s, G�nero, N�mero)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -654,38 +756,6 @@ numero(setenta, seventy, _, _).
 numero(ochenta, eighty, _, _).
 numero(noventa, ninety, _, _).
 
-% REGLA PARA N�MEROS DEL 21-29 (veinti + unidad)
-numero(NumEs, NumEn, Gen, Num) :-
-    between(1, 9, Unidad),
-    unidad_numero(Unidad, UnidadEs, UnidadEn, _),
-    atom_concat('veinti', UnidadEs, NumEs),
-    (Unidad = 1 ->
-        (Gen = masculino, atom_concat('twenty_one', '', NumEn);
-         Gen = femenino, atom_concat('twenty_one', '', NumEn))
-    ;
-        atom_concat('twenty_', UnidadEn, NumEn)
-    ).
-
-% REGLA PARA N�MEROS DEL 31-99 (decena + "y" + unidad)
-numero(NumEs, NumEn, Gen, Num) :-
-    between(3, 9, DecenaIdx),
-    decena_numero(DecenaIdx, DecenaEs, DecenaEn),
-    between(1, 9, Unidad),
-    unidad_numero(Unidad, UnidadEs, UnidadEn, UnidadGen),
-    atom_concat(DecenaEs, '_y_', TempEs),
-    atom_concat(TempEs, UnidadEs, NumEs),
-    (Unidad = 1 ->
-        (Gen = masculino, atom_concat(DecenaEn, '_one', NumEn);
-         Gen = femenino, atom_concat(DecenaEn, '_one', NumEn))
-    ;
-        atom_concat(DecenaEn, '_', TempEn),
-        atom_concat(TempEn, UnidadEn, NumEn)
-    ).
-
-% REGLA PARA DECENAS EXACTAS (20, 30, 40, etc.)
-numero(DecenaEs, DecenaEn, _, _) :-
-    between(2, 9, DecenaIdx),
-    decena_numero(DecenaIdx, DecenaEs, DecenaEn).
 
 % Tabla de decenas
 decena_numero(2, veinte, twenty).
@@ -709,39 +779,6 @@ unidad_numero(7, siete, seven, _).
 unidad_numero(8, ocho, eight, _).
 unidad_numero(9, nueve, nine, _).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% N�MEROS COMO DETERMINANTES (usando las mismas reglas)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Determinantes num�ricos del 0-19 (definiciones expl�citas)
-determinante(cero, zero, _, singular).
-determinante(uno, one, masculino, singular).
-determinante(una, one, femenino, singular).
-determinante(dos, two, _, _).
-determinante(tres, three, _, _).
-determinante(cuatro, four, _, _).
-determinante(cinco, five, _, _).
-determinante(seis, six, _, _).
-determinante(siete, seven, _, _).
-determinante(ocho, eight, _, _).
-determinante(nueve, nine, _, _).
-determinante(diez, ten, _, _).
-determinante(once, eleven, _, _).
-determinante(doce, twelve, _, _).
-determinante(trece, thirteen, _, _).
-determinante(catorce, fourteen, _, _).
-determinante(quince, fifteen, _, _).
-determinante(dieciséis, sixteen, _, _).
-determinante(diecisiete, seventeen, _, _).
-determinante(dieciocho, eighteen, _, _).
-determinante(diecinueve, nineteen, _, _).
-
-% REGLA PARA DETERMINANTES NUM�RICOS DEL 20-99
-determinante(NumEs, NumEn, Gen, Num) :-
-    numero(NumEs, NumEn, Gen, Num),
-    \+ member(NumEs, [cero, uno, una, dos, tres, cuatro, cinco, seis, siete, ocho, nueve,
-                     diez, once, doce, trece, catorce, quince,
-                     dieciséis, diecisiete, dieciocho, diecinueve]).
 
 
 

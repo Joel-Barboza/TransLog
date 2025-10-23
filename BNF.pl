@@ -1,6 +1,11 @@
 :- consult('Logic.pl').
 encoding(utf16le).
 
+% traducir_es_ing/2: Versión simplificada para traducir español → inglé
+traducir_es_ing(Oracion_es, Oracion_in) :-
+    oraciones(Oracion_es, _, Oracion_in, _).
+
+
 % TRADUCCIÓN ESPAÑOL -> INGLÉS
 % traducir_es_en/1: Traduce una oración del español al inglés
 % Parámetro: OracionEs (string) - Oración en español a traducir
