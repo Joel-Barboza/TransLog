@@ -128,3 +128,10 @@ ejemplos_numeros_extendidos([
     'cincuenta y ocho p�jaros',
     'setenta y dos mujeres'
 ]).
+% Probar preguntas
+probar_preguntas :-
+    writeln('=== PROBANDO PREGUNTAS ==='),
+    traducir_es_en("quienes beben agua"),
+    traducir_es_en("que come el niño"),
+    traducir_es_en("donde esta la biblioteca"),
+    traducir_es_en("como estas tu").

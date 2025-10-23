@@ -250,4 +250,35 @@ numero(NumEs, NumEn, Gen, _) :-
 numero(DecenaEs, DecenaEn, _, _) :-
     between(2, 9, DecenaIdx),
     decena_numero(DecenaIdx, DecenaEs, DecenaEn).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% REGLAS PARA PREGUNTAS SIMPLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Pregunta: ¿Quién(es) + verbo?
+oracion_pregunta([Preg|Resto], [], [TraduccionPreg|TraduccionResto], []) :-
+    pregunta(Preg, TraduccionPreg),
+    sintagma_verbal(Resto, TraduccionResto, _, _, [], []).
+
+% Pregunta: ¿Qué/Dónde/Cómo + verbo be + sujeto?
+oracion_pregunta([Preg, Verbo|Resto], [], [TraduccionPreg, TraduccionVerbo|TraduccionResto], []) :-
+    pregunta(Preg, TraduccionPreg),
+    verbo_be(Verbo, TraduccionVerbo, Per, Num),
+    sintagma_nominal(Resto, TraduccionResto, Per, Num, [], []).
+
+% Pregunta: ¿Qué/Dónde/Cómo + do/does + sujeto + verbo?
+oracion_pregunta([Preg|Resto], [], [TraduccionPreg, Aux|TraduccionCompleta], []) :-
+    pregunta(Preg, TraduccionPreg),
+    sintagma_nominal(Resto, SN_trad, Per, Num, SV_es, []),
+    (Per = 3, Num = singular -> Aux = does; Aux = do),
+    sintagma_verbal(SV_es, SV_trad, Per, Num, [], []),
+    append(SN_trad, SV_trad, TraduccionCompleta).
+
+% Agrega esto al final de la sección de PREGUNTAS en Logic.pl:
+
+% Pregunta: ¿Qué + verbo? (sin sujeto explícito)
+oracion_pregunta([Preg, Verbo|Resto], [], [TraduccionPreg|TraduccionResto], []) :-
+    pregunta(Preg, TraduccionPreg),
+    verbo(Verbo, TraduccionVerbo, Per, Num),
+    sintagma_nominal(Resto, ObjTrad, _, _, [], []),
+    (Per = 3, Num = singular -> Aux = does; Aux = do),
+    append([Aux, TraduccionVerbo], ObjTrad, TraduccionResto).

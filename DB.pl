@@ -778,6 +778,23 @@ unidad_numero(6, seis, six, _).
 unidad_numero(7, siete, seven, _).
 unidad_numero(8, ocho, eight, _).
 unidad_numero(9, nueve, nine, _).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PALABRAS INTERROGATIVAS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+pregunta(qué, what).
+pregunta(quién, who).
+pregunta(quiénes, who).
+pregunta(dónde, where).
+pregunta(cuándo, when).
+pregunta(por_qué, why).
+pregunta(cómo, how).
+pregunta(cuál, which).
+pregunta(cuáles, which).
+pregunta(cuánto, how_much).
+pregunta(cuánta, how_much).
+pregunta(cuántos, how_many).
+pregunta(cuántas, how_many).
 
 
 
