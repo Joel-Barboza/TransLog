@@ -105,7 +105,7 @@ ejemplos_numeros([
     'diez estudiantes',
     'quince p�jaros'
 ]).
-% EJEMPLOS DE USO CON N�MEROS EXTENDIDOS
+% EJEMPLOS DE USO CON NuMEROS EXTENDIDOS
 probar_numeros_extendidos :-
     writeln('=== PRUEBAS CON N�MEROS EXTENDIDOS ==='),
     ejemplos_numeros_extendidos(Ejemplos),

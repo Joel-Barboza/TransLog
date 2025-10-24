@@ -33,7 +33,7 @@ determinante(mi, my, _, singular).
 determinante(mis, my, _, plural).
 determinante(tu, your, _, singular).
 determinante(tus, your, _, plural).
-determinante(su, his, _, singular).  % también her, its, your formal
+determinante(su, his, _, singular).  % tambienn her, its, your formal
 determinante(sus, his, _, plural).
 
 
@@ -578,10 +578,10 @@ conjuncion(donde, where).
 conjuncion(por, for).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% N�MEROS: numero(Espa�ol, Ingl�s, G�nero, N�mero)
+%% NuMEROS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% N�meros cardinales del 0 al 15 (ya existentes)
+% Numeros cardinales del 0 al 15 (ya existentes)
 numero(cero, zero, _, singular).
 numero(uno, one, masculino, singular).
 numero(una, one, femenino, singular).
@@ -600,7 +600,7 @@ numero(trece, thirteen, _, _).
 numero(catorce, fourteen, _, _).
 numero(quince, fifteen, _, _).
 
-% N�meros del 16 al 19: dieci + n�mero base
+% Numeros del 16 al 19: dieci + n�mero base
 numero(dieciséis, sixteen, _, _).
 numero(diecisiete, seventeen, _, _).
 numero(dieciocho, eighteen, _, _).
