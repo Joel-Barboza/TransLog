@@ -77,122 +77,6 @@ determinante(NumEs, NumEn, Gen, Num) :-
 %% Formato: sustantivo(Español, Inglés, ListaSinonimos, Género, Número)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-/*% Personas
-sustantivo(hombre, man, masculino, singular).
-sustantivo(mujer, woman, femenino, singular).
-sustantivo(niño, boy, masculino, singular).
-sustantivo(niña, girl, femenino, singular).
-sustantivo(amigo, friend, masculino, singular).
-sustantivo(amiga, friend, femenino, singular).
-sustantivo(profesor, teacher, masculino, singular).
-sustantivo(profesora, teacher, femenino, singular).
-sustantivo(doctor, doctor, masculino, singular).
-sustantivo(doctora, doctor, femenino, singular).
-sustantivo(estudiante, student, masculino, singular).
-sustantivo(estudiante, student, femenino, singular).
-sustantivo(padre, father, masculino, singular).
-sustantivo(madre, mother, femenino, singular).
-sustantivo(hermano, brother, masculino, singular).
-sustantivo(hermana, sister, femenino, singular).
-
-% Plurales de personas
-sustantivo(hombres, men, masculino, plural).
-sustantivo(mujeres, women, femenino, plural).
-sustantivo(niños, boys, masculino, plural).
-sustantivo(niñas, girls, femenino, plural).
-sustantivo(amigos, friends, masculino, plural).
-sustantivo(amigas, friends, femenino, plural).
-
-% Animales
-sustantivo(perro, dog, masculino, singular).
-sustantivo(perra, dog, femenino, singular).
-sustantivo(gato, cat, masculino, singular).
-sustantivo(gata, cat, femenino, singular).
-sustantivo(pájaro, bird, masculino, singular).
-sustantivo(caballo, horse, masculino, singular).
-sustantivo(pez, fish, masculino, singular).
-sustantivo(vaca, cow, femenino, singular).
-sustantivo(cerdo, pig, masculino, singular).
-% Animales plurales
-sustantivo(perros, dogs, masculino, plural).
-sustantivo(gatos, cats, masculino, plural).
-sustantivo(pájaros, birds, masculino, plural).
-sustantivo(caballos, horses, masculino, plural).
-sustantivo(peces, fishes, masculino, plural).
-sustantivo(vacas, cows, femenino, plural).
-sustantivo(cerdos, pigs, masculino, plural).
-
-
-% Alimentos
-sustantivo(manzana, apple, femenino, singular).
-sustantivo(pan, bread, masculino, singular).
-sustantivo(agua, water, femenino, singular).
-sustantivo(leche, milk, femenino, singular).
-sustantivo(carne, meat, femenino, singular).
-sustantivo(pescado, fish, masculino, singular).
-sustantivo(arroz, rice, masculino, singular).
-sustantivo(pasta, pasta, femenino, singular).
-sustantivo(queso, cheese, masculino, singular).
-sustantivo(fruta, fruit, femenino, singular).
-sustantivo(verdura, vegetable, femenino, singular).
-sustantivo(jugo, juice, masculino, singular).
-sustantivo(café, coffee, masculino, singular).
-sustantivo(té, tea, masculino, singular).
-
-% Plurales de alimentos
-sustantivo(manzanas, apples, femenino, plural).
-sustantivo(panes, breads, masculino, plural).
-sustantivo(carnes, meats, femenino, plural).
-
-% Objetos y lugares
-sustantivo(casa, house, femenino, singular).
-sustantivo(coche, car, masculino, singular).
-sustantivo(carro, car, masculino, singular).
-sustantivo(libro, book, masculino, singular).
-sustantivo(mesa, table, femenino, singular).
-sustantivo(silla, chair, femenino, singular).
-sustantivo(ventana, window, femenino, singular).
-sustantivo(puerta, door, femenino, singular).
-sustantivo(ciudad, city, femenino, singular).
-sustantivo(pueblo, town, masculino, singular).
-sustantivo(país, country, masculino, singular).
-sustantivo(escuela, school, femenino, singular).
-sustantivo(colegio, school, masculino, singular).
-sustantivo(universidad, university, femenino, singular).
-sustantivo(trabajo, work, masculino, singular).
-sustantivo(oficina, office, femenino, singular).
-sustantivo(parque, park, masculino, singular).
-sustantivo(jardín, garden, masculino, singular).
-sustantivo(baño, bathroom, masculino, singular).
-sustantivo(cocina, kitchen, femenino, singular).
-sustantivo(habitación, room, femenino, singular).
-sustantivo(dormitorio, bedroom, masculino, singular).
-
-% Plurales de objetos
-sustantivo(casas, houses, femenino, plural).
-sustantivo(coches, cars, masculino, plural).
-sustantivo(libros, books, masculino, plural).
-sustantivo(mesas, tables, femenino, plural).
-sustantivo(sillas, chairs, femenino, plural).
-
-% Conceptos abstractos y otros
-sustantivo(tiempo, time, masculino, singular).
-sustantivo(día, day, masculino, singular).
-sustantivo(noche, night, femenino, singular).
-sustantivo(semana, week, femenino, singular).
-sustantivo(mes, month, masculino, singular).
-sustantivo(año, year, masculino, singular).
-sustantivo(vida, life, femenino, singular).
-sustantivo(amor, love, masculino, singular).
-sustantivo(odio, hate, masculino, singular).
-sustantivo(felicidad, happiness, femenino, singular).
-sustantivo(tristeza, sadness, femenino, singular).
-sustantivo(problema, problem, masculino, singular).
-sustantivo(solución, solution, femenino, singular).
-sustantivo(pregunta, question, femenino, singular).
-sustantivo(respuesta, answer, femenino, singular).
-*/
-
 % Personas
 sustantivo(hombre, man, [[varón, male], [individuo, individual], [señor, mister]], masculino, singular).
 sustantivo(mujer, woman, [[dama, lady], [señora, madam], [fémina, female]], femenino, singular).
@@ -693,29 +577,6 @@ conjuncion(cuando, when).
 conjuncion(donde, where).
 conjuncion(por, for).
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% PREGUNTAS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-pregunta(qué, what, _).
-pregunta(quién, who, singular).
-pregunta(quiénes, who, plural).
-pregunta(dónde, where, _).
-pregunta(cuándo, when, _).
-pregunta(por_qué, why, _).
-pregunta(cómo, how, _).
-pregunta(cuál, which, singular).
-pregunta(cuáles, which, plural).
-pregunta(cuánto, how_much, singular).
-pregunta(cuánta, how_much, singular).
-pregunta(cuántos, how_many, plural).
-pregunta(cuántas, how_many, plural).
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% N�MEROS: numero(Espa�ol, Ingl�s, G�nero, N�mero)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -778,6 +639,8 @@ unidad_numero(6, seis, six, _).
 unidad_numero(7, siete, seven, _).
 unidad_numero(8, ocho, eight, _).
 unidad_numero(9, nueve, nine, _).
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PALABRAS INTERROGATIVAS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

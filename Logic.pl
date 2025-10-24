@@ -1,19 +1,12 @@
 :- consult('DB.pl').
 encoding(utf16le).
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ORACIONES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 % oraciones/4: Maneja tanto oraciones simples como compuestas y
 % preguntas
-/*oraciones(S0, S, T0, T) :-
-    oracion_pregunta(S0, S, T0, T),
-    !.*/
 oraciones(S0, S, T0, T) :-
     oracion_compuesta(S0, S, T0, T),
     !.
@@ -46,26 +39,12 @@ oracion_simple(S0,S, T0,T):-
 oracion_simple(S0,S, T0,T):-
     sintagma_verbal(S0, T0, _, _, S,T).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% PREGUNTAS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-
-
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CONJUNCIONES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% DETECCIÓN DE CONJUNCIÓN Y SIGUIENTE ORACIÓN
+% separa dos oraciones al encontrar una conjuncion
 conjuncion_y_otra_oracion(S0, S, T0, T) :-
     conj(S0, S1, T0, T1),
     oraciones(S1, S, T1, T).
@@ -103,13 +82,14 @@ sintagma_nominal([Det_es, Sus_es, Adj_es | Res_es],
     adjetivo(Adj_es, Adj_in, Gen, Num),
     !.
 
+% sintagma_nominal/6: Analiza Sust + Adj (español) → Adj + Sust (ingles)
 sintagma_nominal([Sus_es, Adj_es | Res_es],
                  [Adj_in, Sus_in | Res_in],
                  3, Num, Res_es,Res_in):-
     encuentra_sinonimo(Sus_es, Sus_in, Gen, Num),    % sustantivo o un sinonimo
     adjetivo(Adj_es, Adj_in, Gen, Num),
     !.
-
+% sintagma_nominal/6: sintagma_nominal con solo sustantivo
 sintagma_nominal([Sus_es| Res_es],
                  [Sus_in | Res_in],
                  3, Num, Res_es,Res_in):-
